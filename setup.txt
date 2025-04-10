@@ -1,0 +1,118 @@
+# Flask-React User Management Application - Setup Instructions
+
+This document provides instructions for setting up and running the Flask-React User Management application in any IDE.
+
+## Prerequisites
+
+- Python 3.8+ installed
+- Node.js and npm installed
+- Git installed (for cloning the repository)
+
+## Clone the Repository
+
+```
+git clone https://github.com/mrudul-UmassD/CIS-602-Flask-React-Activity-.git
+cd CIS-602-Flask-React-Activity-
+```
+
+## Backend Setup
+
+1. Create and activate a Python virtual environment:
+
+   **Windows:**
+   ```
+   python -m venv env
+   env\Scripts\activate
+   ```
+
+   **macOS/Linux:**
+   ```
+   python3 -m venv env
+   source env/bin/activate
+   ```
+
+2. Install Flask dependencies:
+   ```
+   pip install flask flask-cors
+   ```
+   
+   Note: If you want to install all dependencies from the requirements.txt (which includes many packages not directly needed for this application), use:
+   ```
+   pip install -r requirements.txt
+   ```
+
+## Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```
+   cd _frontend/users
+   ```
+
+2. Install React dependencies:
+   ```
+   npm install
+   ```
+
+3. Build the React application:
+   ```
+   npm run build
+   ```
+
+## Running the Application
+
+1. Return to the project root directory:
+   ```
+   cd ../..  # If you're in the _frontend/users directory
+   ```
+
+2. Start the Flask application:
+   ```
+   python app.py
+   ```
+
+3. Initialize the database by visiting:
+   ```
+   http://127.0.0.1:5000/init
+   ```
+   Note: You only need to do this once when you first run the application.
+
+4. Access the application in your web browser:
+   ```
+   http://127.0.0.1:5000
+   ```
+
+## Application Features
+
+- View a list of users
+- Add new users
+- Edit existing users
+- Delete users
+
+## Troubleshooting
+
+- If you see a database error about "table users already exists", it means you've already initialized the database.
+- If you have issues with the React frontend not displaying properly, make sure you've built the React app with `npm run build`.
+- If you encounter CORS issues, make sure the Flask CORS extension is properly installed and configured.
+
+## Project Structure
+
+- `app.py` - Flask backend application
+- `_frontend/users/` - React frontend application
+- `mydatabase.db` - SQLite database (created after initializing)
+
+## Development Mode
+
+For development, you can run the React application in development mode:
+
+1. In one terminal, run the Flask backend:
+   ```
+   python app.py
+   ```
+
+2. In another terminal, navigate to the frontend directory and run:
+   ```
+   cd _frontend/users
+   npm run dev
+   ```
+   
+This will start the React development server with hot-reloading. 
