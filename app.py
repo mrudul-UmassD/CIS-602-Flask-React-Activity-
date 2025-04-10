@@ -1,12 +1,12 @@
-from flask import Flask, request, jsonify,send_file, render_template
+from flask import Flask, request, jsonify,send_file, render_template, send_from_directory
 import sqlite3
 from flask_cors import CORS, cross_origin
+import os
 
 
-app = Flask(__name__)
-# app = Flask(__name__, 
-#             template_folder='./',
-#             static_folder='./')
+app = Flask(__name__, 
+            template_folder='./_frontend/users/dist',
+            static_folder='./_frontend/users/dist/assets')
 
 CORS(app)
 
@@ -92,9 +92,19 @@ def delete_user(user_id):
     response = jsonify({'message': 'User deleted successfully'})
     return response
 
+# Serve static files
+@app.route('/assets/<path:filename>')
+def serve_static(filename):
+    return send_from_directory(app.static_folder, filename)
+
 # main route
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+# Add routes to catch all paths and redirect to React app
+@app.route('/<path:path>')
+def catch_all(path):
     return render_template('index.html')
 
 if __name__ == '__main__':
